@@ -8,10 +8,17 @@ const btnAdd = document.getElementById("btnAdd");
 
 function renderMemes(memes) {
     loadingText.style.display = "none";
-    if (memes.length === 0) {
-    memesGrid.innerHTML = '<p class="empty-text">Мемов пока нет. Добавьте первый!</p>';
-    return;
+    
+    const countElement = document.getElementById('memesCount');
+    if (countElement) {
+        countElement.textContent = "Всего мемов: " + memes.length;
     }
+
+    if (memes.length === 0) {
+        memesGrid.innerHTML = '<p class="empty-text">Мемов пока нет. Добавьте первый!</p>';
+        return;
+    }
+
     memesGrid.innerHTML = memes.map((meme) => createCardHTML(meme)).join("");
 }
 
